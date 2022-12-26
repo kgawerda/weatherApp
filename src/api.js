@@ -5,12 +5,20 @@ function getUrl(cityName) {
 async function getForecast(url) {
   const response = await fetch(url);
   const forecastData = await response.json();
-  //console.log(forecastData);
   return forecastData;
 }
 
-async function getName(data) {
-  return data.name;
+function getDataFromJson(json) {
+  //in kelvin
+  const data = {
+    name: json.name,
+    temp: json.main.temp,
+    feels_like: json.main.feels_like,
+    humidity: json.main.humidity,
+    weather: json.weather[0].description,
+    wind: json.wind.speed, //m/s
+  };
+  return data;
 }
 
-export { getForecast, getUrl, getName };
+export { getForecast, getUrl, getDataFromJson };
