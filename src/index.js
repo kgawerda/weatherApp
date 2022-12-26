@@ -1,4 +1,6 @@
-import { getForecast, cordsUrl } from "./api.js";
+import { getForecast, getUrl, getName } from "./api.js";
 
-let test = getForecast(cordsUrl("london"), "imperial");
-console.log(test);
+const test = getForecast(getUrl("london")).then(function (response) {
+  let name = response.name + "123";
+  console.log(name);
+});
